@@ -1,53 +1,272 @@
 <?php
 
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = '租房网';
 ?>
-<div class="site-index">
+    <div class="app">
+        <!-- 页面头部 -->
+        <header>
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+            <div class="banner-roll">
+                <div class="banner-item">
+                    <div class="ite" style="background-image: url(/images/widget-banner1.png');"></div>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                    <div class="ite" style="background-image: url(../img/widget-banner2.png);"></div>
+                    <div class="ite" style="background-image: url(../img/widget-banner3.png);"></div>
+                </div>
+                <div class="indicators"></div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+            <div class="searchBox">
+                <div class="search">
+                    <div class="select">
+                        <div class="sdOpt"><span>北京</span> <i class="icon-arrow"></i></div>
+                        <div class="optes">
+                            <p>北京</p>
+                            <p>天津</p>
+                            <p>上海</p>
+                            <p>深圳</p>
+                        </div>
+                    </div>
+                    <div class="searchInput"><i class="icon-seach"></i><input type="text" placeholder="请输入小区或地址"></div>
+                </div>
+                <div class="searchMap"><i class="icon-map"></i></div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+        </header>
+        <div class="contentBox">
+            <!--头部导航-->
+            <nav>
+                <div>
+                    <img src="<?= Url::to('@web/images/widget-nav-1.png');?>" alt="">
+                    <p>整租</p>
+                </div>
+                <div>
+                    <img src="<?= Url::to('@web/images/widget-nav-2.png');?>" alt="">
+                    <p>合租</p>
+                </div>
+                <div>
+                    <img src="<?= Url::to('@web/images/widget-nav-3.png');?>" alt="">
+                    <p>地图找房</p>
+                </div>
+                <div>
+                    <img src="<?= Url::to('@web/images/widget-nav-4.png');?>" alt="">
+                    <p>去出租</p>
+                </div>
+            </nav>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <div class="group">
+                <div class="tit">
+                    租房小组
+                    <span>更多</span>
+                </div>
+                <div class="cont">
+                    <div class="item">
+                        <div class="info">
+                            <p class="name">家住回龙观</p>
+                            <p class="des">归属的感觉</p>
+                        </div>
+                        <div><img src="<?= Url::to('@web/images/widget-group-1.png');?>" alt=""></div>
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <p class="name">宜居四五环</p>
+                            <p class="des">归属的感觉</p>
+                        </div>
+                        <div><img src="<?= Url::to('@web/images/widget-group-2.png');?>" alt=""></div>
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <p class="name">喧嚣三里屯</p>
+                            <p class="des">归属的感觉</p>
+                        </div>
+                        <div><img src="<?= Url::to('@web/images/widget-group-3.png');?>" alt=""></div>
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <p class="name">毗邻十号线</p>
+                            <p class="des">地铁心连心</p>
+                        </div>
+                        <div><img src="<?= Url::to('@web/images/widget-group-4.png');?>" alt=""></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contItem">
+                <div class="title">
+                    推荐房源
+                </div>
+                <div class="contNav">
+                    <div class="select">
+                        <div class="sdOpt "><span>区域</span> <i class="icon-arrow"></i></div>
+                        <div class="clikOpen optes">
+                            <p>北京</p>
+                            <p>天津</p>
+                            <p>上海</p>
+                            <p>深圳</p>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <div class="sdOpt "><span>方式</span> <i class="icon-arrow"></i></div>
+                        <div class="clikOpen optes">
+                            <p>北京</p>
+                            <p>天津</p>
+                            <p>上海</p>
+                            <p>深圳</p>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <div class="sdOpt "><span>租金</span> <i class="icon-arrow"></i></div>
+                        <div class="clikOpen optes">
+                            <p>北京</p>
+                            <p>天津</p>
+                            <p>上海</p>
+                            <p>深圳</p>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <div class="sdOpt "><span>筛选</span> <i class="icon-arrow"></i></div>
+                        <div class="clikOpen optes-block">
+                            <div class="sl-mask"></div>
+                            <div class="sl-itembox">
+                                <div class="sl-items">
+                                    <div class="tit">户型</div>
+                                    <div><span>一局</span><span>两局</span><span>三局</span><span>四局</span></div>
+                                </div>
+                                <div class="sl-items">
+                                    <div class="tit">朝向</div>
+                                    <div><span>东</span><span>南</span><span>西</span><span>北</span><span>东南</span></div>
+                                </div>
+                                <div class="sl-items">
+                                    <div class="tit">楼层</div>
+                                    <div><span>低楼层</span><span>中楼层</span><span>高楼层</span></div>
+                                </div>
+                                <div class="sl-items">
+                                    <div class="tit">电梯</div>
+                                    <div><span>有电梯</span><span>无电梯</span></div>
+                                </div>
+                            </div>
+                            <div class="sl-but"><span class="clear">清除</span><span class="el-sub">确定</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cont">
+                    <div class="item">
+                        <div><img src="<?= Url::to('@web/images/widget-it-1.png');?>" alt=""></div>
+                        <div class="message">
+                            <!--看房记录需要以下标签 -->
+                            <!--<div class="iconText cl-ready"></div>-->
+                            <!--<div class="iconText cl-end"></div>-->
+                            <!--<div class="iconText cl-fail"></div>-->
+                            <p class="name">安贞西里 三室一厅</p>
+                            <p class="des">72.32㎡/南 北/低楼层</p>
+                            <p class="lab"><span class="lab1">押一付三</span> <span class="lab2">免押金</span> <span class="lab3">精装</span></p>
+                            <p class="pic"><em>4500</em>/月</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div><img src="<?= Url::to('@web/images/widget-it-1.png');?>" alt=""></div>
+                        <div class="message">
+                            <!--看房记录需要以下标签 -->
+                            <!--<div class="iconText cl-ready"></div>-->
+                            <!--<div class="iconText cl-end"></div>-->
+                            <!--<div class="iconText cl-fail"></div>-->
+                            <p class="name">安贞西里 三室一厅</p>
+                            <p class="des">72.32㎡/南 北/低楼层</p>
+                            <p class="lab"><span class="lab1">押一付三</span> <span class="lab2">免押金</span> <span class="lab3">精装</span></p>
+                            <p class="pic"><em>4500</em>/月</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div><img src="<?= Url::to('@web/images/widget-it-1.png');?>" alt=""></div>
+                        <div class="message">
+                            <!--看房记录需要以下标签 -->
+                            <!--<div class="iconText cl-ready"></div>-->
+                            <!--<div class="iconText cl-end"></div>-->
+                            <!--<div class="iconText cl-fail"></div>-->
+                            <p class="name">安贞西里 三室一厅</p>
+                            <p class="des">72.32㎡/南 北/低楼层</p>
+                            <p class="lab"><span class="lab1">押一付三</span> <span class="lab2">免押金</span> <span class="lab3">精装</span></p>
+                            <p class="pic"><em>4500</em>/月</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
+        <div class="sort"><img src="<?= Url::to('@web/images/page-sort.png');?>" alt=""></div>
+        <!-- 页面底部 -->
+        <!--底部版权-->
+        <footer>
+            <div class="active"><i class="icon-ind"></i>首页</div>
+            <div><i class="icon-findHouse"></i>找房</div>
+            <div><i class="icon-infom"></i>资讯</div>
+            <div><i class="icon-my"></i>我的</div>
+        </footer>
     </div>
-</div>
+    <script>
+        $(function() {
+            var ht = $('.banner-item').width() * 0.565
+            var tg = $('.banner-item .ite');
+            var num = 0;
+            for (i = 0; i < tg.length; i++) {
+                $('.indicators').append('<span></span>');
+                $('.indicators').find('span').eq(num).addClass('active');
+            }
+            $(".banner-item,.banner-roll").css('height', ht)
+
+            function roll() {
+                tg.eq(num).animate({
+                    'opacity': '1',
+                    'z-index': num
+                }, 2000).siblings().animate({
+                    'opacity': '0',
+                    'z-index': 0
+                }, 2000);
+                $('.indicators').find('span').eq(num).addClass('active').siblings().removeClass('active');
+                if (num >= tg.length - 1) {
+                    num = 0;
+                } else {
+                    num++;
+                }
+            }
+            $('.indicators').find('span').click(function() {
+                num = $(this).index();
+                roll();
+            });
+            var timer = setInterval(roll, 2000);
+            $('.banner-item').mouseover(function() {
+                clearInterval(timer)
+            });
+            $('.banner-item').mouseout(function() {
+                timer = setInterval(roll, 2000)
+            });
+        })
+        $(window).resize(function() {
+            var ht = $('.banner-item').find('img').eq(0).height()
+            $(".banner-item,.banner-roll").css('height', ht)
+        });
+
+
+        var data = {}
+        $('.sl-items span').click(function(e) {
+            $(this).addClass('act').siblings('span').removeClass('act')
+            var key = $(this).parent().parent().find('.tit').text()
+            var val = $(this).text()
+            data[key] = val
+        })
+        $('.clear').click(function() {
+            data = []
+            $('.sl-items span').removeClass('act')
+        })
+        $('.el-sub').click(function() {
+            console.log(data)
+            $('.clikOpen').removeClass('openSelect')
+        })
+
+
+        $('footer div').click(function() {
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+    </script>
