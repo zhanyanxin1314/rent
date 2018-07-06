@@ -1,12 +1,15 @@
 <?php
 
 namespace api\modules\v1\controllers;
+
 use Yii;
-use yii\rest\ActiveController;
+use yii\rest\Controller;
+use yii\filters\ContentNegotiator;
 use yii\web\Response;
 use api\models\Goods;
 use yii\web\Request;
-class GoodsController extends ActiveController
+
+class GoodsController extends Controller
 {
 
     public $modelClass = 'api\models\Goods';
@@ -14,7 +17,29 @@ class GoodsController extends ActiveController
     public function behaviors()  
     {  
         $behaviors = parent::behaviors();  
-        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;  
+        $behaviors['corsFilter'] = [
+		'class' => \yii\filters\Cors::className(),		
+		'cors' => [
+                // restrict access to
+                'Origin' => ['http://120.79.212.63:8093'],
+                'Access-Control-Request-Method' => ['POST', 'PUT'],
+                // Allow only POST and PUT methods
+                'Access-Control-Request-Headers' => ['X-Wsse'],
+                // Allow only headers 'X-Wsse'
+                'Access-Control-Allow-Credentials' => true,
+                // Allow OPTIONS caching
+                'Access-Control-Max-Age' => 3600,
+                // Allow the X-Pagination-Current-Page header to be exposed to the browser.
+                'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
+            ],
+        ];
+        $behaviors['contentNegotiator'] = [
+		'class' => ContentNegotiator::className(),
+                'formats' => [
+			'application/json' => Response::FORMAT_JSON
+                ]
+
+        ];
         return $behaviors;  
     }
      
@@ -41,6 +66,16 @@ class GoodsController extends ActiveController
         return [
 	        'code'=>true,
 		'message'=>$result
+        ];	
+    }
+    public function actionDemo2()
+    {
+        $request = Yii::$app->request;
+	$name = $request->post('name');
+
+        return [
+	        'code'=>true,
+		'message'=>$name
         ];	
     }
 }

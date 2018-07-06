@@ -46,10 +46,11 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+		 // 'GET v1/goods'=>'/get-avatar', //获取头像
 		  [
         		'class' => 'yii\rest\UrlRule',
         		'controller' => ['v1/goods']
-   		 ],
+   	          ],
             ],
         ],
        

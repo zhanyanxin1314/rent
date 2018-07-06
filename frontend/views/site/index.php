@@ -1,20 +1,68 @@
 <?php
 
 use yii\helpers\Url;
+use yii\helpers\Html;
 /* @var $this yii\web\View */
-
 $this->title = '租房网';
 ?>
+
+<?=Html::jsFile('@web/js/jquery.js')?>
+<?=Html::jsFile('@web/js/vue.js')?>
+<?=Html::jsFile('@web/js/vue-resource.js')?>
+
+   	<div id="app">
+	{{ obj | json }}
+		<button @click = "getdata">get请求</button>
+	
+	</div>
+
+<script>
+var vm = new Vue({
+	el :'#app',
+	data:{
+		obj:null
+	},
+	methods:{
+		getdata:function(){
+			// 1.0 请求的url
+			var url = 'http://120.79.212.63:8097/v1/goods/demo'
+
+			// 2.0 利用 vue-resource发出ajax的get请求
+			this.$http.get(url)  //发出请求
+			.then(function(response){
+				/**response.body 就是获取到 http://vueapi.ittun.com/api/getprodlist 响应回来的数据格式为：
+				{
+				  "status": 0,
+				  "message": [
+				    {
+				      "id": 1,
+				      "name": "奥迪",
+				      "ctime": "2017-02-07T10:32:07.000Z"
+				    },
+				    {
+				      "id": 2,
+				      "name": "宝马",
+				      "ctime": "2017-02-07T10:32:17.000Z"
+				    }
+				  ]
+				}*/
+				this.obj = response.body;
+
+			}) // 获取服务器响应回来的数据
+		}
+	}
+});
+</script>
     <div class="app">
         <!-- 页面头部 -->
         <header>
 
             <div class="banner-roll">
                 <div class="banner-item">
-                    <div class="ite" style="background-image: url(/images/widget-banner1.png');"></div>
+                    <div class="ite" style="background-image: url(/images/widget-banner1.png);"></div>
 
-                    <div class="ite" style="background-image: url(../img/widget-banner2.png);"></div>
-                    <div class="ite" style="background-image: url(../img/widget-banner3.png);"></div>
+                    <div class="ite" style="background-image: url(/images/widget-banner2.png);"></div>
+                    <div class="ite" style="background-image: url(/images/widget-banner3.png);"></div>
                 </div>
                 <div class="indicators"></div>
             </div>

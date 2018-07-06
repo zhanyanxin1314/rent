@@ -66,8 +66,8 @@ input {
 ****/
 @font-face {
   font-family: 'icomoon';
-  src: url("../css/fonts/widget-icomoon.eot?pz7xay");
-  src: url("../css/fonts/widget-icomoon.eot?pz7xay") format("embedded-opentype"), url("../css/fonts/widget-icomoon.ttf?pz7xay") format("truetype"), url("../css/fonts/widget-icomoon.woff?pz7xay") format("woff"), url("../css/fonts/widget-icomoon.svg?pz7xay") format("svg");
+  src: url("fonts/widget-icomoon.eot?pz7xay");
+  src: url("fonts/widget-icomoon.eot?pz7xay") format("embedded-opentype"), url("fonts/widget-icomoon.ttf?pz7xay") format("truetype"), url("fonts/widget-icomoon.woff?pz7xay") format("woff"), url("fonts/widget-icomoon.svg?pz7xay") format("svg");
   font-weight: normal;
   font-style: normal;
 }
