@@ -1,0 +1,26 @@
+<?php
+
+namespace frontend\assets;
+
+use yii\web\AssetBundle;
+
+/**
+ * Main frontend application asset bundle.
+ */
+class AppAsset extends AssetBundle
+{
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
+    public $css = [
+        'css/rent/plugins/normalize-css/normalize.css',
+	'css/rent/page-RH-index.css'
+    ];
+    public $js = [
+	'js/widget-comment.js',
+	'js/page-RH-index.js'
+    ];
+    public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+    ];
+}
