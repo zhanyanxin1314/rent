@@ -12,6 +12,8 @@ use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
+
+<?=Html::jsFile('@web/js/jquery.min.js')?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -26,7 +28,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-    <div class="container">
+    <div>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

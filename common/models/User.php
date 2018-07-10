@@ -186,4 +186,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    /**
+     * Finds user
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findUser()
+    {
+        return static::find()->all();
+        //return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
+
 }

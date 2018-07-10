@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
-$this->title = '租房网';
+$this->title = '好客租房';
 ?>
 
 <?=Html::jsFile('@web/js/jquery.js')?>
