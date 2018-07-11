@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="row cl">
         <label class="form-label col-xs-3"><i style="margin-left:120px" class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-xs-8">
-           <?php echo Html::activeTextInput($model, 'password',['id'=>'da-login-password','placeholder'=>'密码','class'=>'input-text size-L'])?>
+           <?php echo Html::activePasswordInput($model, 'password',['id'=>'da-login-password','placeholder'=>'密码','class'=>'input-text size-L'])?>
         </div>
       </div>
       <div class="row cl" style="text-align:center;">

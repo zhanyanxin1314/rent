@@ -1,9 +1,4 @@
 <?php
-
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
-
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
@@ -30,27 +25,14 @@ use yii\helpers\Url;
 			<input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password2" name="password2">
 		</div>
 	</div>
-	<!--<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
-		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
-			<div class="radio-box">
-				<input name="sex" type="radio" id="sex-1" checked>
-				<label for="sex-1">男</label>
-			</div>
-			<div class="radio-box">
-				<input type="radio" id="sex-2" name="sex">
-				<label for="sex-2">女</label>
-			</div>
-		</div>
-	</div>-->
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+		<label class="form-label col-xs-4 col-sm-3">手机：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="text" class="input-text" value="" placeholder="" id="mobile" name="mobile">
 		</div>
 	</div>
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
+		<label class="form-label col-xs-4 col-sm-3">邮箱：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="text" class="input-text" placeholder="@" name="email" id="email">
 		</div>
@@ -88,56 +70,27 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
-/*	function aaa(){
-	$("#form-admin-add").validate({
-		rules:{
-			username:{
-				required:true,
-				minlength:4,
-				maxlength:16
-			},
-			password_hash:{
-				required:true,
-			},
-			password2:{
-				required:true,
-				equalTo: "#password_hash"
-			},
-			sex:{
-				required:true,
-			},
-			mobile:{
-				required:true,
-				isPhone:true,
-				
-			},
-			email:{
-				required:true,
-				email:true,
-			},
-			adminRole:{
-				required:true,
-			},
-		},
-                messages: { 
-			   password_hash : "请输入初始密码!",
-			   password2 : "请输入确认密码!",
-                	   mobile : "请输入手机号码!",
-			   email : "请输入邮箱!",
-    		},
-		onkeyup:false,
-		focusCleanup:true,
-		success:"valid",
-	});
-}*/
 
-
-        //添加表单提交动作
+    //添加表单提交动作
     $('#form-admin-add').submit(function(evt){
         evt.preventDefault();//阻止浏览器自己的submit
 	var username = $('#username').val();
+	var password_hash = $('#password_hash').val();
+	var password2 = $('#password2').val();
 	if(username == ''){
 		layer.msg('管理员不能为空!',{icon:2,time:3000});
+		return false;
+	}
+	if(password_hash == ''){
+		layer.msg('初始密码不能为空!',{icon:2,time:3000});
+		return false;
+	}
+	if(password2 == ''){
+		layer.msg('确认密码不能为空!',{icon:2,time:3000});
+		return false;
+	}
+	if(password_hash != password2){
+		layer.msg('两次密码不一样!',{icon:2,time:3000});
 		return false;
 	}
         var shuju = $(this).serialize();
@@ -148,21 +101,13 @@ $(function(){
             dataType:'json',
             type:'post',
             success:function(msg){
-		alert(msg.code);
-                if(msg.code==="success"){
-                    //alert('添加课时成功');
-                    //layer.msg('添加课时成功!',{icon:1,time:5000});
 		
-                   // layer.alert('添加课时成功', function(index){
-                        //parent.mydatatable.api().ajax.reload();//刷新父页面,即刷新datatable
+                if(msg.code === 'zfsu') {
 			var index = parent.layer.getFrameIndex(window.name);
                      	parent.window.location.href = parent.window.location.href; //父页面刷新
 			parent.layer.close(index);
-                       // layer_close();//关闭当前弹出层
-                    //});
-                }else{
-                    //alert('添加课时失败【'+msg.errorinfo+'】');
-                    layer.alert('添加课时失败【'+msg.errorinfo+'】',{icon:5});
+                } else {
+                    layer.alert('添加管理员失败',{icon:5});
                 }
             }
         });

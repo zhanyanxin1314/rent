@@ -6,10 +6,13 @@ use Yii;
 use common\models\User;
 use yii\web\Response;
 use yii\web\Request;
-use yii\db\Command;
 
 class ManageController extends \yii\web\Controller
 {
+     const STATUS = 10;
+     const VALIDATE_SUCCESS = 'zfsu';
+     const VALIDATE_ERROR = 'zfer';
+
     /*
      * 管理员列表
      */
@@ -18,7 +21,7 @@ class ManageController extends \yii\web\Controller
 	$user = New User();
         $list  = $user->findUser();
 
-        return $this->render('list',[
+        return $this->render('user/list',[
              'list'=> $list
 	]);
     }
@@ -29,10 +32,7 @@ class ManageController extends \yii\web\Controller
     public function actionCreate()
     {
 	
-	//$user = New User();
-        //$list  = $user->findUser();
-
-       return $this->render('create');
+       return $this->render('user/create');
     }
 
     /* 
@@ -42,23 +42,55 @@ class ManageController extends \yii\web\Controller
     {
 	\Yii::$app->response->format = Response::FORMAT_JSON;
 
+        $username = Yii::$app->request->post('username');
 
-	$username = Yii::$app->request->post('username');
-	$result = Yii::$app->db->createCommand()->insert('user', [  
-            'username' => 'admin',
-	    'auth_key' => 'ddddddd',
-	    'password_hash'=>'password',
-	    'status'=>10,
-	    'email'=>'1111@qq.com',
-	    'mobile'=>15201251947,
+	$password = Yii::$app->request->post('password_hash');	
+
+        $password_hash = Yii::$app->getSecurity()->generatePasswordHash($password);
+
+	$result =Yii::$app->db->createCommand()->insert('user', [  
+            'username' => $username,
+	    'auth_key' => '', 
+	    'password_hash'=>$password_hash,
+	    'status'=>self::STATUS,
+	    //'email'=>$email,
+	    //'mobile'=>$mobile,
 	    'created_at'=>time(),
 	    'updated_at'=>time(),
         ])->execute();  
 
+	if($result){
 
-		return ['code'=>'success'];
+	    return ['code'=>self::VALIDATE_SUCCESS];
 
+        } else {
+		
+	    return ['code'=>self::VALIDATE_ERROR];
+	
+	}
 	
     }
 
+    /*
+     * 角色列表
+     */
+    public function actionRole()
+    {
+	//$user = New User();
+        //$list  = $user->findUser();
+
+        //return $this->render('list',[
+          //   'list'=> $list
+	//]);
+	return $this->render('role/list');
+    }
+	
+    /*
+     * 添加角色
+     */
+    public function actionCreateRole()
+    {
+	return $this->render('role/create');
+    }
+   
 }

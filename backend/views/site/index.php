@@ -1,12 +1,8 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
-
+use \backend\services\DataHelper;
+use \backend\services\UrlService;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\helpers\Url;
 
 $this->title = '好客租房-后台';
 $this->params['breadcrumbs'][] = $this->title;
@@ -55,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			<dt><i class="Hui-iconfont">&#xe620;</i> 房源管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="<?= Url::to(['/house/list']);?>" data-title="房源管理" href="javascript:void(0)">房源管理</a></li>
+					<li><a data-href="<?=UrlService::buildUrl("/house/list");?>;?>" data-title="房源管理" href="javascript:void(0)">房源管理</a></li>
 					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
 					<li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
 				</ul>
@@ -79,9 +75,10 @@ $this->params['breadcrumbs'][] = $this->title;
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="<?= Url::to(['/manage/list']);?>" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
-					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
+					<li><a data-href="<?=UrlService::buildUrl("/user/index");?>" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="<?=UrlService::buildUrl("/role/index");?>" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+
+					<li><a data-href="<?=UrlService::buildUrl("/access/index");?>" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -139,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span style="margin-left:-20px;" title="主页" data-href="<?= Url::to(['/site/home']);?>">主页</span>
+					<span style="margin-left:-20px;" title="主页" data-href="<?=UrlService::buildUrl("/site/home");?>">主页</span>
 					<em></em></li>
 		</ul>
 	</div>
