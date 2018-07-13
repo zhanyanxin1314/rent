@@ -11,10 +11,9 @@ use \backend\services\UrlService;
 				<select name="pid" class="select">
 					<option value="0">请选择</option>
 				        <?php foreach( $alllist as $_key => $_all ):?>
-						<option  value="<?=$_all['id'];?>"><?=$_all['title'];?></option>
-					 <?php foreach( $_all['child'] as $_key1 => $_all1 ):?>
-					<option value="<?=$_all1['id'];?>">&nbsp;&nbsp;├<?=$_all1['title'];?></option>
-				<?php endforeach;?>
+						<option <?php if(!empty($info['pid']) && $_all['id'] == $info['pid']):?>selected="selected"<?php endif; ?> value="<?=$_all['id'];?>">
+					<?php echo str_repeat('--',$_all['level']);?>
+					<?php echo $_all['title']?></option>
 			  	        <?php endforeach;?>	
 				</select>
 				</span> </div>
@@ -33,7 +32,7 @@ use \backend\services\UrlService;
 				$urls = $urls?$urls:[];
                         ?>
 				<input type="text" class="input-text"  placeholder="" id="urls" name="urls" value="<?=implode("\r\n",$urls);?>">
-
+格式 xxx/xxxx
 			</div>
 		</div>
 		<div class="row cl">

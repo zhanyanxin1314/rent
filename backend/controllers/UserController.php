@@ -16,7 +16,6 @@ class UserController extends  BaseController{
 
 	//用户列表
 	public function actionIndex(){
-		//查询所有用户
 		$user_list = User::find()->where([ 'status' => 10 ])->orderBy([ 'id' => SORT_DESC ])->all();
 		$set_flag = $this->checkPrivilege( "user/create-user" );
 		return $this->render('index',[
@@ -55,6 +54,7 @@ class UserController extends  BaseController{
 		$password = trim( $this->post("password_hash","") );
 		$email = trim( $this->post("email","") );
 	        $password_hash = Yii::$app->getSecurity()->generatePasswordHash($password);
+		
 		$role_ids = $this->post("role_ids",[]);//选中的角色id
 		$date_now = time();
 
@@ -73,15 +73,20 @@ class UserController extends  BaseController{
 		}
 		
 		$info = User::find()->where([ 'id' => $id ])->one();
-		if( $info ){//如果存在则是编辑
+		if( $info ){
 			$model_user = $info;
 		}else{//不存在就是添加
 			$model_user = new User();
 			$model_user->status = 10;
 			$model_user->created_at =  $date_now;
+			$model_user->is_admin = 0;
 		}
 		$model_user->username = $name;
-		$model_user->password_hash = $password_hash;
+		if(empty($password)){
+			$model_user->password_hash = $info['password_hash'];
+		}else{
+			$model_user->password_hash = $password_hash;
+		}
 		$model_user->email = $email;
 		$model_user->updated_at = $date_now;
 		if( $model_user->save(0) ){//如果用户信息保存成功，接下来保存用户和角色之间的关系

@@ -38,7 +38,7 @@ class BaseController extends  Controller{
 		$login_status = $this->checkLoginStatus();
 	;
 		if ( !$login_status && !in_array( $action->uniqueId,$this->allowAllAction )  ) {
-				$this->redirect( UrlService::buildUrl("/site/login") );//返回到登录页面
+			$this->redirect( UrlService::buildUrl("/site/login") );//返回到登录页面
 			return false;
 		}
 		if( !$this->checkPrivilege( $action->getUniqueId() ) ){
@@ -59,7 +59,7 @@ class BaseController extends  Controller{
 			return true;
 		}
 
-		return in_array( $url, $this->getRolePrivilege( ) );
+		return in_array( $url, $this->getRolePrivilege());
 	}
 
 		/*
@@ -84,6 +84,8 @@ class BaseController extends  Controller{
 					foreach( $list as $_item  ){
 						$tmp_urls = @json_decode(  $_item['urls'],true );
 						$this->privilege_urls = array_merge( $this->privilege_urls,$tmp_urls );
+
+		
 					}
 				}
 			}

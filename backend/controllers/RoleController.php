@@ -74,7 +74,7 @@ class RoleController extends BaseController
 			}
 
 			//取出所有的权限
-			$access_list = Access::find()->where([ 'status' => 1 ])->orderBy( [ 'id' => SORT_DESC ])->all();
+			$access_list = Access::find()->where([ 'status' => 1 ,'level' => 1])->orderBy( [ 'id' => SORT_DESC ])->all();
 
 			//取出所有已分配的权限
 			$role_access_list = RoleAccess::find()->where([ 'role_id' => $id ])->asArray()->all();

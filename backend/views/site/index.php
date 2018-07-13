@@ -3,6 +3,7 @@
 use \backend\services\DataHelper;
 use \backend\services\UrlService;
 use yii\helpers\Html;
+use common\menu\tools;
 
 $this->title = '好客租房-后台';
 $this->params['breadcrumbs'][] = $this->title;
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 			<ul class="cl">
 				<li>超级管理员</li>
-				<li class="dropDown dropDown_hover"><?=  Yii::$app->user->identity->username;?>
+				<li class="dropDown dropDown_hover">&nbsp;&nbsp; <?=  Yii::$app->user->identity->username;?>
 						<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
 						<li><a href="<?=UrlService::buildUrl("/site/logout");?>">退出</a></li>
@@ -29,70 +30,25 @@ $this->params['breadcrumbs'][] = $this->title;
 </header>
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
-		<dl id="menu-picture">
-			<dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
-				</ul>
-			</dd>
-		</dl>
-                <dl id="menu-area">
-                        <dt><i class="Hui-iconfont">&#xe613;</i> 地区管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-                        <dd>
-                                <ul>
-                                        <li><a data-href="" data-title="地区列表" href="javascript:void(0)">地区列表</a></li>
-                                </ul>
-                        </dd>
-                </dl>
-
-		<dl id="menu-product">
-			<dt><i class="Hui-iconfont">&#xe620;</i> 房源管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="<?=UrlService::buildUrl("/house/list");?>;?>" data-title="房源管理" href="javascript:void(0)">房源管理</a></li>
-					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-					<li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
-				</ul>
-			</dd>
-		</dl>
-		<dl id="menu-member">
-			<dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="member-list.html" data-title="会员列表" href="javascript:;">会员列表</a></li>
-					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
-					<li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>
-					<li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">积分管理</a></li>
-					<li><a data-href="member-record-browse.html" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
-					<li><a data-href="member-record-download.html" data-title="下载记录" href="javascript:void(0)">下载记录</a></li>
-					<li><a data-href="member-record-share.html" data-title="分享记录" href="javascript:void(0)">分享记录</a></li>
-				</ul>
-			</dd>
-		</dl>
+	<?php  $menu  = \common\menu\tools::getMenu();?>
+	<?php if( $menu ):?>
+                <?php foreach( $menu as $_item ):?>
 		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe62d;</i> <?=$_item['title'];?><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="<?=UrlService::buildUrl("/user/index");?>" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
-					<li><a data-href="<?=UrlService::buildUrl("/role/index");?>" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-
-					<li><a data-href="<?=UrlService::buildUrl("/access/index");?>" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
+					<?php foreach( $_item['child'] as $_itemchild ):?>
+					<?php
+						$tmp_urls = @json_decode( $_itemchild['urls'],true );
+						$tmp_urls = $tmp_urls?$tmp_urls:[];
+					?>
+					<li><a data-href="<?= UrlService::buildUrl(implode("<br/>",$tmp_urls));?>" data-title="权限管理" href="javascript:void(0)"><?= $_itemchild['title']?></a></li>
+					<?php endforeach;?>
 				</ul>
 			</dd>
 		</dl>
-		<dl id="menu-system">
-			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
-					<li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
-				</ul>
-			</dd>
-		</dl>
+	  	<?php endforeach;?>
+	  <?php endif;?>
 	</div>
 
 	<div class="menu_dropdown bk_2" style="display:none">

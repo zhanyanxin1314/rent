@@ -13,7 +13,7 @@ class AccessController extends BaseController
     public function actionIndex()
     {
 	$list = Access::find()->orderBy([ 'id' => SORT_DESC ])->all();
-	$treelist = $this->actionCate($list,array());
+	$treelist = $this->list_level($list,$pid=0,$level=0);
 	return $this->render("index",[
 		'models' => $treelist
 	]); 
@@ -23,7 +23,8 @@ class AccessController extends BaseController
 		if( \Yii::$app->request->isGet ){
 		
 			$all = Access::find()->where([ 'status' => 1 ])->all();
-			$alllist = $this->actionCate($all,array());
+			$alllist = $this->list_level($all,$pid=0,$level=0);
+		
 			$id = $this->get("id",0);
 			$info = [];
 			if( $id ){
@@ -53,20 +54,23 @@ class AccessController extends BaseController
 			return $this->renderJSON([],'请输入合法的Urls!',-1);
 		}
 
-		//查询同一标题的是否存在
 		$has_in = Access::find()->where([ 'title' => $title ])->andWhere([ '!=','id',$id ])->count();
 		if( $has_in ){
 			return $this->renderJSON([],'该权限标题已存在!',-1);
 		}
 
-		//查询指定id的权限
 		$info = Access::find()->where([ 'id' => $id ])->one();
-		if( $info ){//如果存在则是编辑
+		if( $info ) {
 			$model_access = $info;
-		}else{//不存在就是添加
+		} else {
 			$model_access = new Access();
 			$model_access->status = 1;
 			$model_access->created_at =  $date_now;
+		}
+		if($pid == 0){
+		   $model_access->level = 0;
+		} else {
+                   $model_access->level = 1;
 		}
 		$model_access->pid = $pid;
 		$model_access->title = $title;
@@ -76,6 +80,17 @@ class AccessController extends BaseController
 		
 		return $this->renderJSON([],'操作成功!');	
     }
+    public function list_level($arr,$pid=0,$level=0){
+    	static $data = array();
+    	foreach($arr as $k => $v){
+        	if($v['pid'] == $pid){
+            		$v['level'] = $level;
+            		$data[] = $v;
+            		$this->list_level($arr,$v['id'],$level+1);
+       		 }
+    	}
+    	return $data;
+   }
     public function actionCate(&$info, $child, $pid = 0)
     {
     	$child = array();

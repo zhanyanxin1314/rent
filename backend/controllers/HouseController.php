@@ -1,12 +1,13 @@
 <?php
 
 namespace backend\controllers;
+use backend\controllers\common\BaseController;
 
-class HouseController extends \yii\web\Controller
+class HouseController extends BaseController
 {
-    public function actionList()
+    public function actionIndex()
     {
-        return $this->render('list');
+        return $this->render('index');
     }
 
 }
