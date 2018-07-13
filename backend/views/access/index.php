@@ -36,6 +36,16 @@ use \backend\services\UrlService;
 				<td><?=implode("<br/>",$tmp_urls);?></td>
 				<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','<?=UrlService::buildUrl("/access/create-access",[ 'id' => $_access_info['id'] ]);?>','1','','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
+			<?php foreach( $_access_info['child'] as $_key1 => $_info ):?>
+
+		        <tr class="text-c">
+                                <td><input type="checkbox" value="1" name=""></td>
+                                <td><?=$_info['id'];?></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├ <?=$_info['title'];?></td>
+                                <td><?=implode("<br/>",$tmp_urls);?></td>
+                                <td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','<?=UrlService::buildUrl("/access/create-access",[ 'id' => $_info['id'] ]);?>','1','','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title=">删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                        </tr>
+			<?php endforeach;?>
 			<?php endforeach;?>
 			<?php else:?>
 			<tr> <td colspan="5" style="text-align:center;">暂无权限</td> </tr>

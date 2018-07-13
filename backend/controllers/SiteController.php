@@ -1,16 +1,18 @@
 <?php
 namespace backend\controllers;
 
+use backend\controllers\common\BaseController;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-
+use backend\models\User;
+ 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * {@inheritdoc}
@@ -60,7 +62,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-	
+	//$uid = Yii::$app->user->identity->id;
         return $this->render('index');
     }
 
@@ -76,8 +78,13 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+	
+	    $user_info = User::find()
+			->where([ 'username' => Yii::$app->user->identity->username ])
+			->one();
+	    $session = Yii::$app->session;
+	    $session->set('zfuid', $user_info['id']);
             return $this->goBack();
         } else {
             $model->password = '';

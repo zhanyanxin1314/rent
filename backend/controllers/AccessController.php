@@ -13,25 +13,30 @@ class AccessController extends BaseController
     public function actionIndex()
     {
 	$list = Access::find()->orderBy([ 'id' => SORT_DESC ])->all();
-
+	$treelist = $this->actionCate($list,array());
 	return $this->render("index",[
-		'models' => $list
+		'models' => $treelist
 	]); 
     } 
     public function actionCreateAccess()
     {
 		if( \Yii::$app->request->isGet ){
+		
+			$all = Access::find()->where([ 'status' => 1 ])->all();
+			$alllist = $this->actionCate($all,array());
 			$id = $this->get("id",0);
 			$info = [];
 			if( $id ){
 				$info = Access::find()->where([ 'status' => 1 ,'id' => $id ])->one();
 			}
 			return $this->render('_createaccess',[
-				'info' => $info
+				'info' => $info,
+				'alllist'=> $alllist
 			]);
 		}
 
 		$id = intval( $this->post("id",0) );
+		$pid = intval( $this->post("pid",0) );
 		$title = trim( $this->post("title","") );
 		$urls = trim( $this->post("urls","") );
 		$date_now = time();
@@ -63,14 +68,28 @@ class AccessController extends BaseController
 			$model_access->status = 1;
 			$model_access->created_at =  $date_now;
 		}
+		$model_access->pid = $pid;
 		$model_access->title = $title;
 		$model_access->urls = json_encode( $urls );//json格式保存的
 		$model_access->updated_at = $date_now;
 		$model_access->save(0);
-
+		
 		return $this->renderJSON([],'操作成功!');	
     }
-
+    public function actionCate(&$info, $child, $pid = 0)
+    {
+    	$child = array();
+    	if(!empty($info)){
+        	foreach ($info as $k => &$v) {
+            		if($v['pid'] == $pid){
+                		$v['child'] = $this->actionCate($info, $child, $v['id']);
+                		$child[] = $v;
+                		unset($info[$k]);
+            		}
+        	}
+    }
+    return $child;
+   }
    /*
     *角色分配权限
     */

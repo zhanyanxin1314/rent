@@ -6,6 +6,20 @@ use \backend\services\UrlService;
 <article class="page-container">
 	<form action="" method="post" class="form form-horizontal" id="form-admin-access-add">
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>父级权限</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="pid" class="select">
+					<option value="0">请选择</option>
+				        <?php foreach( $alllist as $_key => $_all ):?>
+						<option  value="<?=$_all['id'];?>"><?=$_all['title'];?></option>
+					 <?php foreach( $_all['child'] as $_key1 => $_all1 ):?>
+					<option value="<?=$_all1['id'];?>">&nbsp;&nbsp;├<?=$_all1['title'];?></option>
+				<?php endforeach;?>
+			  	        <?php endforeach;?>	
+				</select>
+				</span> </div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" placeholder="" id="accessTitle" name="title" value="<?=$info?$info['title']:'';?>">

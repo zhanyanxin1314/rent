@@ -30,6 +30,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'l' => 
+        array (
+            'leandrogehlen\\treegrid\\' => 23,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -114,6 +118,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'leandrogehlen\\treegrid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/leandrogehlen/yii2-treegrid',
         ),
         'cebe\\markdown\\' => 
         array (

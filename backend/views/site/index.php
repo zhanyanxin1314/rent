@@ -16,11 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 			<ul class="cl">
 				<li>超级管理员</li>
-				<li class="dropDown dropDown_hover">
-					<a href="#" class="dropDown_A"><?= Yii::$app->user->identity->username;?><i class="Hui-iconfont">&#xe6d5;</i></a>
+				<li class="dropDown dropDown_hover"><?=  Yii::$app->user->identity->username;?>
 						<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-						<li><a href="#">退出</a></li>
+						<li><a href="<?=UrlService::buildUrl("/site/logout");?>">退出</a></li>
 				</ul>
 			</li>
 			</ul>

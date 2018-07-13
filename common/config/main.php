@@ -6,6 +6,10 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+	'session'=>array(
+            'class' => 'yii\web\Session',
+	    'cookieParams' => ['lifetime' => 7 * 24 *60 * 60]
+        ),
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

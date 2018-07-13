@@ -48,4 +48,13 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
+  'leandrogehlen/yii2-treegrid' => 
+  array (
+    'name' => 'leandrogehlen/yii2-treegrid',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@leandrogehlen/treegrid' => $vendorDir . '/leandrogehlen/yii2-treegrid',
+    ),
+  ),
 );

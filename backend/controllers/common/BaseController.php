@@ -7,7 +7,7 @@ namespace backend\controllers\common;
 
 
 use backend\models\Access;
-//use app\models\AppAccessLog;
+use backend\models\AppAccessLog;
 use backend\models\RoleAccess;
 use backend\models\User;
 use backend\models\UserRole;
@@ -15,24 +15,39 @@ use backend\models\UserRole;
 use backend\services\UrlService;
 use yii\web\Controller;
 use Yii;
-//是以后所有控制器的基类，并且集成常用公用方法
+
 class BaseController extends  Controller{
 
-	protected $auth_cookie_name = "zhangyxcl";
-	protected $current_user = null;//当前登录人信息
+	protected $current_user = null;
 	protected $allowAllAction = [
-		'user/login',
-		'user/vlogin'
+		'site/login',
+		'site/logout'
 	];
 
 	public $ignore_url = [
 		'error/forbidden' ,
-		'user/vlogin',
-		'user/login'
+		'site/logout',
+		'site/login',
+		'site/index'
 	];
 
 	public $privilege_urls = [];//保存去的权限链接
-		//检查是否有访问指定链接的权限
+
+	public function beforeAction($action) {
+		
+		$login_status = $this->checkLoginStatus();
+	;
+		if ( !$login_status && !in_array( $action->uniqueId,$this->allowAllAction )  ) {
+				$this->redirect( UrlService::buildUrl("/site/login") );//返回到登录页面
+			return false;
+		}
+		if( !$this->checkPrivilege( $action->getUniqueId() ) ){
+			$this->redirect( UrlService::buildUrl( "/error/forbidden" ) );
+			return false;
+		}
+		return true;
+	}
+	//检查是否有访问指定链接的权限
 	public function checkPrivilege( $url ){
 		//如果是超级管理员 也不需要权限判断
 		if( $this->current_user && $this->current_user['is_admin'] ){
@@ -75,6 +90,10 @@ class BaseController extends  Controller{
 		}
 		return $this->privilege_urls ;
 	}
+	//用户相关信息生成加密校验码函数
+	public function createAuthToken($uid,$name,$email,$user_agent){
+		return md5($uid.$name.$email.$user_agent);
+	}
 	//统一获取post参数的方法
 	public function post($key, $default = "") {
 		return Yii::$app->request->post($key, $default);
@@ -100,5 +119,36 @@ class BaseController extends  Controller{
 			"req_id" =>  uniqid(),
 		]);
 		return Yii::$app->end();//终止请求直接返回
+	}
+
+	//验证登录是否有效，返回 true or  false
+	protected function checkLoginStatus(){
+		$session = Yii::$app->session;
+		$uid =  $session->get('zfuid');
+	
+		if(!$uid){
+			return false;
+		}
+
+		if( $uid ){
+			$userinfo = User::findOne([ 'id' => $uid ]);
+			if(!$userinfo){
+				return false;
+			}
+			$this->current_user = $userinfo;
+			$view = Yii::$app->view;
+			$view->params['current_user'] = $userinfo;
+			return true;
+		}
+		return false;
+	}	
+	//设置登录态cookie
+	public  function createLoginStatus($userinfo){
+		$auth_token = $this->createAuthToken($userinfo['id'],$userinfo['username'],$userinfo['email'],$_SERVER['HTTP_USER_AGENT']);
+		$cookies = Yii::$app->response->cookies;
+		$cookies->add(new \yii\web\Cookie([
+			'name' => $this->auth_cookie_name,
+			'value' => $auth_token."#".$userinfo['id'],
+		]));
 	}
 }

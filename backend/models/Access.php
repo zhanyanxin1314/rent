@@ -16,6 +16,8 @@ use Yii;
  */
 class Access extends \yii\db\ActiveRecord
 {
+
+    public $child;
     /**
      * @inheritdoc
      */
@@ -44,6 +46,8 @@ class Access extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'pid' => 'Pid',
+            'child' => 'Child',
             'title' => 'Title',
             'urls' => 'Urls',
             'status' => 'Status',
