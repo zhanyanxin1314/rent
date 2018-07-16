@@ -39,6 +39,14 @@ $this->title = '好客租房-后台';
 					户型
 			   	    <?php elseif($m->cat == 7):?>
 					电梯
+			   	    <?php elseif($m->cat == 8):?>
+					租房方式
+			   	    <?php elseif($m->cat == 9):?>
+					类型
+			   	    <?php elseif($m->cat == 10):?>
+					房屋年代
+			   	    <?php elseif($m->cat == 11):?>
+					房型
 				    <?php endif;?>
 				</td>
 				<td><?= date('Y-m-d', Html::encode("{$m->created_at}")) ?></td>

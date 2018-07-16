@@ -25,7 +25,7 @@ use \backend\services\StaticService;
 <script type="text/javascript">
 $(function(){
     $('#form-admin-role-add').submit(function(evt){
-        evt.preventDefault();//阻止浏览器自己的submit
+        evt.preventDefault();
 	var name = $('#roleName').val();
 	if(name == ''){
 		layer.msg('角色名称不能为空!',{icon:2,time:3000});
@@ -41,7 +41,7 @@ $(function(){
 		
                 if(res.code == 200) {
 			var index = parent.layer.getFrameIndex(window.name);
-                     	parent.window.location.href = parent.window.location.href; //父页面刷新
+                     	parent.window.location.href = parent.window.location.href;
 			parent.layer.close(index);
                 } else {
                     layer.alert(res.msg,{icon:5});

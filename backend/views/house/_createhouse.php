@@ -17,13 +17,12 @@ use \backend\services\UrlService;
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>租金：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="hrent" class="select">
-					<option value="bx">不限</option>
-					<option value="8-0">800元以下</option>
-					<option value="8-1">800-1500元</option>
-					<option value="1-2">1500-2000元</option>
-					<option value="2-3">2000-3000元</option>
-					<option value="3-5">3000-5000元</option>
-					<option value="5-6">5000-6500元</option>
+					<option value="0">不限</option>
+					<?php foreach( $hrent as $_key => $_hrent_info ):?>
+						<option value="<?=$_hrent_info['id'];?>">
+							<?=$_hrent_info['title'];?>
+						</option>
+					<?php endforeach;?>
 				</select>
 				</span> </div>
 		</div>
@@ -31,10 +30,12 @@ use \backend\services\UrlService;
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>楼层：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="hfloor" class="select">
-					<option value="bx">不限</option>
-					<option value="small">低楼层</option>
-					<option value="middle">中楼层</option>
-					<option value="big">高楼层</option>
+					<option value="0">不限</option>
+					<?php foreach( $hfloor as $_key => $_hfloor_info ):?>
+                                        	<option value="<?=$_hfloor_info['id'];?>">
+							<?=$_hfloor_info['title'];?>
+						</option>
+                                        <?php endforeach;?>
 				</select>
 				</span> </div>
 		</div>
@@ -42,13 +43,12 @@ use \backend\services\UrlService;
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>朝向：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="htoward" class="select">
-					<option value="bx">不限</option>
-					<option value="dong">东</option>
-					<option value="nan">南</option>
-					<option value="xi">西</option>
-					<option value="bei">北</option>
-					<option value="dn">东南</option>
-					<option value="xb">西北</option>
+					<option value="0">不限</option>
+					<?php foreach( $htoward as $_key => $_htoward_info ):?>
+                                        	<option value="<?=$_htoward_info['id'];?>">
+							<?=$_htoward_info['title'];?>
+						</option>
+                                        <?php endforeach;?>
 				</select>
 				</span> </div>
 		</div>
@@ -57,9 +57,12 @@ use \backend\services\UrlService;
 
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="hdeposit" class="select">
-					<option value="myj">免押金</option>
-					<option value="yyfy">押一付一</option>
-					<option value="yyfs">押一付三</option>
+					<option value="0j">免押金</option>
+					<?php foreach( $hdeposit as $_key => $_hdeposit_info ):?>
+                                        	<option value="<?=$_hdeposit_info['id'];?>">
+							<?=$_hdeposit_info['title'];?>
+						</option>
+                                        <?php endforeach;?>
 				</select>
 				</span> </div>
 		</div>
@@ -67,11 +70,12 @@ use \backend\services\UrlService;
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>装修方式：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="hdecorate" class="select">
-					<option value="bx">不限</option>
-					<option value="jzx">精装修</option>
-					<option value="ptzx">普通装修</option>
-					<option value="hhzx">豪华装修</option>
-					<option value="zdzx">中等装修</option>
+					<option value="0">不限</option>
+					<?php foreach( $hdecorate as $_key => $_hdecorate_info ):?>
+                                        	<option value="<?=$_hdecorate_info['id'];?>">
+							<?=$_hdecorate_info['title'];?>
+						</option>
+                                        <?php endforeach;?>
 				</select>
 				</span> </div>
 		</div>
@@ -79,11 +83,12 @@ use \backend\services\UrlService;
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>户型：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="hmodel" class="select">
-					<option value="bx">不限</option>
-					<option value="yj">一局</option>
-					<option value="lj">两居</option>
-					<option value="sj">三局</option>
-					<option value="sij">四局</option>
+					<option value="0">不限</option>
+					 <?php foreach( $hmodel as $_key => $_hmodel_info ):?>
+                                        	<option value="<?=$_hmodel_info['id'];?>">
+							<?=$_hmodel_info['title'];?>
+						</option>
+                                        <?php endforeach;?>
 				</select>
 				</span> </div>
 		</div>
@@ -91,13 +96,69 @@ use \backend\services\UrlService;
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>电梯：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select name="helevator" class="select">
-					<option value="bx">不限</option>
-					<option value="wdt">无电梯</option>
-					<option value="ydt">有电梯</option>
+					<option value="0">不限</option>
+					<?php foreach( $helevator as $_key => $_helevator_info ):?>
+                                        	<option value="<?=$_helevator_info['id'];?>">
+							<?=$_helevator_info['title'];?>
+						</option>
+                                        <?php endforeach;?>
 				</select>
 				</span> </div>
 		</div>
-		
+                <div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>租房方式：</label>
+                        <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+                                <select name="hway" class="select">
+                                        <option value="0">不限</option>
+                                        <?php foreach( $hway as $_key => $_hway_info ):?>
+                                                <option value="<?=$_hway_info['id'];?>">
+                                                        <?=$_hway_info['title'];?>
+                                                </option>
+                                        <?php endforeach;?>
+                                </select>
+                                </span> </div>
+                </div>
+		<div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>房屋类型：</label>
+                        <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+                                <select name="htypes" class="select">
+                                        <option value="0">不限</option>
+                                        <?php foreach( $htypes as $_key => $_htypes_info ):?>
+                                                <option value="<?=$_htypes_info['id'];?>">
+                                                        <?=$_htypes_info['title'];?>
+                                                </option>
+                                        <?php endforeach;?>
+                                </select>
+                                </span> </div>
+                </div>
+		<div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>房屋年代：</label>
+                        <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+                                <select name="hbuilding" class="select">
+                                        <option value="0">不限</option>
+                                        <?php foreach( $hbuilding as $_key => $_hbuilding_info ):?>
+                                                <option value="<?=$_hbuilding_info['id'];?>">
+                                                        <?=$_hbuilding_info['title'];?>
+                                                </option>
+                                        <?php endforeach;?>
+                                </select>
+                                </span> </div>
+                </div>
+
+                <div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>房型：</label>
+                        <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+                                <select name="hroom" class="select">
+                                        <option value="0">不限</option>
+                                        <?php foreach( $hroom as $_key => $_hroom_info ):?>
+                                                <option value="<?=$_hroom_info['id'];?>">
+                                                        <?=$_hroom_info['title'];?>
+                                                </option>
+                                        <?php endforeach;?>
+                                </select>
+                                </span> </div>
+                </div>
+
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -144,7 +205,7 @@ use \backend\services\UrlService;
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<input type="hidden" name="hid"  value="<?=$info?$info['hid']:0;?>">
-				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+				<button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>

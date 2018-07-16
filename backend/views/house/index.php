@@ -15,7 +15,7 @@ use \backend\services\UrlService;
 			<input type="text" name="" id="" placeholder="房源名称" style="width:250px" class="input-text">
 			<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜房源</button>
 		</div>
-		<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="product_add('添加房源','<?=UrlService::buildUrl("/house/create-house");?>')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加房源</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+		<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" onclick="product_add('添加房源','<?=UrlService::buildUrl("/house/create-house");?>')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加房源</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
 		<div class="mt-20">
 			<table class="table table-border table-bordered table-bg table-hover table-sort">
 				<thead>
@@ -40,7 +40,7 @@ use \backend\services\UrlService;
 					</tr>
                                        <?php endforeach;?>
         			       <?php else:?>
-			            		<tr> <td colspan="3">暂无房源</td> </tr>
+			            		<tr> <td style="text-align:center;" colspan="5">暂无房源</td> </tr>
 				        <?php endif;?>
 
 				</tbody>

@@ -19,6 +19,10 @@ use \backend\services\StaticService;
 					<option <?php if(!empty($info) && $info['cat'] == 5):?>selected="selected"<?php endif;?>value="5">装修方式</option>
 					<option <?php if(!empty($info) && $info['cat'] == 6):?>selected="selected"<?php endif;?>value="6">户型</option>
 					<option <?php if(!empty($info) && $info['cat'] == 7):?>selected="selected"<?php endif;?>value="7">电梯</option>
+					<option <?php if(!empty($info) && $info['cat'] == 8):?>selected="selected"<?php endif;?>value="8">租房方式</option>
+					<option <?php if(!empty($info) && $info['cat'] == 9):?>selected="selected"<?php endif;?>value="9">类型</option>
+					<option <?php if(!empty($info) && $info['cat'] == 10):?>selected="selected"<?php endif;?>value="10">房屋年代</option>
+					<option <?php if(!empty($info) && $info['cat'] == 11):?>selected="selected"<?php endif;?>value="11">房型</option>
 				</select>
 				</span> </div>
 		</div>

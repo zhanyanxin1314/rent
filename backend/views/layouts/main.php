@@ -14,6 +14,10 @@ AppAsset::register($this);
 ?>
 
 <?=Html::jsFile('@web/js/jquery.min.js')?>
+<?=Html::jsFile('@web/js/ueditor/1.4.3/ueditor.config.js')?>
+<?=Html::jsFile('@web/js/ueditor/1.4.3/ueditor.all.min.js')?>
+<?=Html::jsFile('@web/js/ueditor/1.4.3/lang/zh-cn/zh-cn.js')?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
