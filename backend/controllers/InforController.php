@@ -37,6 +37,7 @@ class InforController extends BaseController
 		$keywords = $this->post("keywords","");
 		$source = $this->post("source","");
 		$sort = $this->post("sort","");
+		$content = $this->post("content");
 		$date_now = time();
 		if(empty($title)){
 			return $this->renderJSON([],"文章标题不能为空!",-1);
@@ -59,6 +60,7 @@ class InforController extends BaseController
 		$infor_model->keywords = $keywords;
 		$infor_model->source = $source;
 		$infor_model->sort = $sort;
+		$infor_model->content = $content;
 		$infor_model->updated_at = $date_now;
 
 		$infor_model->save(0);

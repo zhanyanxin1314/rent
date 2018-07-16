@@ -41,6 +41,8 @@ use \backend\services\StaticService;
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<input type="hidden" name="id" value="<?=$info?$info['id']:'';?>"/>
+				<input type="hidden" name="content" id="content" value=""/>
+				<textarea style="display:none;" id="content1"><?=$info?$info['content']:'';?></textarea>
 				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
@@ -49,6 +51,11 @@ use \backend\services\StaticService;
 </article>
 <script type="text/javascript">
 $(function(){
+var ue = UE.getEditor('editor');
+		ue.ready(function() {
+			var edcontent=$("#content1").val();
+			ue.setContent(edcontent);
+});
     $('#form-article-add').submit(function(evt){
         evt.preventDefault();
 	var title = $('#title').val();
@@ -56,6 +63,9 @@ $(function(){
 		layer.msg('文章标题不能为空!',{icon:2,time:3000});
 		return false;
 	}
+	var content = 	UE.getEditor('editor').getContent();
+	$('#content').val(content);
+	
         var shuju = $(this).serialize();
         $.ajax({
 	    url:'<?=UrlService::buildUrl("/infor/create-infor");?>',
@@ -74,6 +84,5 @@ $(function(){
         });
     });
 });
-var ue = UE.getEditor('editor');
 </script> 
 

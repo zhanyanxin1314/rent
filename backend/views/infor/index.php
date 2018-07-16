@@ -14,6 +14,8 @@ $this->title = '好客租房-后台';
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" value="" name=""></th>
 				<th width="200">标题</th>
+				<th width="200">关键词</th>
+				<th width="200">来源</th>
 				<th width="300">创建时间</th>
 				<th width="70">操作</th>
 			</tr>
@@ -24,6 +26,8 @@ $this->title = '好客租房-后台';
 			<tr class="text-c">
 				<td><input type="checkbox" value="" name=""></td>
 				<td><?= Html::encode("{$m->title}") ?></td>
+				<td><?= Html::encode("{$m->keywords}") ?></td>
+				<td><?= Html::encode("{$m->source}") ?></td>
 				<td><?= date('Y-m-d', Html::encode("{$m->created_at}")) ?></td>
 				<td class="f-14">&nbsp;&nbsp;<a title="编辑" href="javascript:;" onclick="admin_infor_edit('资讯编辑','<?=UrlService::buildUrl("/infor/create-infor",[ 'id' => $m['id'] ]);?>','1')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <!--<a title="删除" href="javascript:;" onclick="admin_role_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a><--></td>
 
