@@ -1,6 +1,8 @@
 <?php
+
 use \backend\services\DataHelper;
 use \backend\services\UrlService;
+
 ?>
 
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
@@ -28,7 +30,7 @@ use \backend\services\UrlService;
 		</thead>
 		<tbody>
 			<?php if( $list ):?>
-            <?php foreach( $list as $_key => $_user_info ):?>
+       			<?php foreach( $list as $_key => $_user_info ):?>
 			<tr class="text-c">
 				<td><input type="checkbox" value="1" name=""></td>
 				<td><?=$_user_info['id'];?></td>
