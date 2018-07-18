@@ -36,9 +36,8 @@ class BaseController extends  Controller{
 	public function beforeAction($action) {
 		
 		$login_status = $this->checkLoginStatus();
-	;
 		if ( !$login_status && !in_array( $action->uniqueId,$this->allowAllAction )  ) {
-			$this->redirect( UrlService::buildUrl("/site/login") );//返回到登录页面
+			$this->redirect( UrlService::buildUrl("/site/login") );
 			return false;
 		}
 		if( !$this->checkPrivilege( $action->getUniqueId() ) ){
@@ -49,12 +48,11 @@ class BaseController extends  Controller{
 	}
 	//检查是否有访问指定链接的权限
 	public function checkPrivilege( $url ){
-		//如果是超级管理员 也不需要权限判断
+	
 		if( $this->current_user && $this->current_user['is_admin'] ){
 			return true;
 		}
 
-		//有一些页面是不需要进行权限判断的
 		if( in_array( $url,$this->ignore_url ) ){
 			return true;
 		}
@@ -62,7 +60,7 @@ class BaseController extends  Controller{
 		return in_array( $url, $this->getRolePrivilege());
 	}
 
-		/*
+	/*
 	* 获取某用户的所有权限
 	* 取出指定用户的所属角色，
 	* 在通过角色 取出 所属 权限关系

@@ -1,5 +1,54 @@
 [
     {
+        "name": "aki/yii2-vue",
+        "version": "0.5.1",
+        "version_normalized": "0.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/akbarjoudi/yii2-vue.git",
+            "reference": "e79db6443791db1c4243f79d74fa3f6f3f8799b3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/akbarjoudi/yii2-vue/zipball/e79db6443791db1c4243f79d74fa3f6f3f8799b3",
+            "reference": "e79db6443791db1c4243f79d74fa3f6f3f8799b3",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/axios": "*",
+            "bower-asset/vue": "*",
+            "yiisoft/yii2": "*"
+        },
+        "time": "2018-01-23T13:00:28+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "aki\\vue\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "akbar joudi",
+                "email": "akbar.joody@gmail.com"
+            }
+        ],
+        "description": "for yii2 web application ",
+        "keywords": [
+            " akbar-joudi",
+            " vue.js",
+            " vuejs",
+            " yii2",
+            " yii2-vue",
+            "vue",
+            "yii2"
+        ]
+    },
+    {
         "name": "behat/gherkin",
         "version": "v4.5.1",
         "version_normalized": "4.5.1.0",
@@ -58,6 +107,27 @@
             "DSL",
             "gherkin",
             "parser"
+        ]
+    },
+    {
+        "name": "bower-asset/axios",
+        "version": "v0.18.0",
+        "version_normalized": "0.18.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/axios/axios.git",
+            "reference": "d59c70fdfd35106130e9f783d0dbdcddd145b58f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/axios/axios/zipball/d59c70fdfd35106130e9f783d0dbdcddd145b58f",
+            "reference": "d59c70fdfd35106130e9f783d0dbdcddd145b58f",
+            "shasum": null
+        },
+        "type": "bower-asset",
+        "installation-source": "dist",
+        "license": [
+            "MIT"
         ]
     },
     {
@@ -210,6 +280,24 @@
         },
         "require": {
             "bower-asset/jquery": ">=1.7"
+        },
+        "type": "bower-asset",
+        "installation-source": "dist"
+    },
+    {
+        "name": "bower-asset/vue",
+        "version": "v2.5.16",
+        "version_normalized": "2.5.16.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vuejs/vue.git",
+            "reference": "25342194016dc3bcc81cb3e8e229b0fb7ba1d1d6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/vuejs/vue/zipball/25342194016dc3bcc81cb3e8e229b0fb7ba1d1d6",
+            "reference": "25342194016dc3bcc81cb3e8e229b0fb7ba1d1d6",
+            "shasum": null
         },
         "type": "bower-asset",
         "installation-source": "dist"

@@ -2,57 +2,13 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use backend\models\User;
 /* @var $this yii\web\View */
 $this->title = '好客租房';
 ?>
 
 <?=Html::jsFile('@web/js/jquery.js')?>
-<?=Html::jsFile('@web/js/vue.js')?>
-<?=Html::jsFile('@web/js/vue-resource.js')?>
 
-   	<div id="app">
-	{{ obj | json }}
-		<button @click = "getdata">get请求</button>
-	
-	</div>
-
-<script>
-var vm = new Vue({
-	el :'#app',
-	data:{
-		obj:null
-	},
-	methods:{
-		getdata:function(){
-			// 1.0 请求的url
-			var url = 'http://120.79.212.63:8097/v1/goods/demo'
-
-			// 2.0 利用 vue-resource发出ajax的get请求
-			this.$http.get(url)  //发出请求
-			.then(function(response){
-				/**response.body 就是获取到 http://vueapi.ittun.com/api/getprodlist 响应回来的数据格式为：
-				{
-				  "status": 0,
-				  "message": [
-				    {
-				      "id": 1,
-				      "name": "奥迪",
-				      "ctime": "2017-02-07T10:32:07.000Z"
-				    },
-				    {
-				      "id": 2,
-				      "name": "宝马",
-				      "ctime": "2017-02-07T10:32:17.000Z"
-				    }
-				  ]
-				}*/
-				this.obj = response.body;
-
-			}) // 获取服务器响应回来的数据
-		}
-	}
-});
-</script>
     <div class="app">
         <!-- 页面头部 -->
         <header>
@@ -140,7 +96,31 @@ var vm = new Vue({
                     </div>
                 </div>
             </div>
+            <div class="contItem" style="margin-bottom:10px;">
+                <div class="title">
+                    租房资讯
+                </div>
+                <div class="cont">
+                    <div class="itemC">
+                        <div><img src="<?= Url::to('@web/images/widget-it-2.png');?>" alt=""></div>
+                        <div class="message">
+                            <p class="name">置业选择 | 安贞西里 三室一厅 河间的古雅别院 </p>
+                            <p class="lab"><span>限购</span><span>租房</span></p>
+                            <p class="source"><span>两天前</span></p>
+                        </div>
+                    </div>
 
+                    <div class="itemC">
+                        <div><img src="<?= Url::to('@web/images/widget-it-2.png');?>" alt=""></div>
+                        <div class="message">
+                            <p class="name">置业选择 | 安贞西里 三室一厅 河间的古雅别院 </p>
+                            <p class="lab"><span>限购</span><span>租房</span></p>
+                            <p class="source"><span>两天前</span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <div class="contItem">
                 <div class="title">
                     推荐房源
@@ -318,3 +298,5 @@ var vm = new Vue({
             $(this).addClass('active').siblings().removeClass('active')
         })
     </script>
+
+

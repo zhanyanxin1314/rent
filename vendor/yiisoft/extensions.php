@@ -57,4 +57,13 @@ return array (
       '@leandrogehlen/treegrid' => $vendorDir . '/leandrogehlen/yii2-treegrid',
     ),
   ),
+  'aki/yii2-vue' => 
+  array (
+    'name' => 'aki/yii2-vue',
+    'version' => '0.5.1.0',
+    'alias' => 
+    array (
+      '@aki/vue' => $vendorDir . '/aki/yii2-vue',
+    ),
+  ),
 );

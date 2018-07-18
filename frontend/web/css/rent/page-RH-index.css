@@ -66,8 +66,8 @@ input {
 ****/
 @font-face {
   font-family: 'icomoon';
-  src: url("fonts/widget-icomoon.eot?pz7xay");
-  src: url("fonts/widget-icomoon.eot?pz7xay") format("embedded-opentype"), url("fonts/widget-icomoon.ttf?pz7xay") format("truetype"), url("fonts/widget-icomoon.woff?pz7xay") format("woff"), url("fonts/widget-icomoon.svg?pz7xay") format("svg");
+  src: url("../css/fonts/widget-icomoon.eot?pz7xay");
+  src: url("../css/fonts/widget-icomoon.eot?pz7xay") format("embedded-opentype"), url("../css/fonts/widget-icomoon.ttf?pz7xay") format("truetype"), url("../css/fonts/widget-icomoon.woff?pz7xay") format("woff"), url("../css/fonts/widget-icomoon.svg?pz7xay") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -104,6 +104,7 @@ input {
 
 .icon-ask:before {
   content: "\e93a";
+  color: #969b9c;
 }
 
 .icon-message:before {
@@ -144,7 +145,6 @@ input {
 
 .icon-mess:before {
   content: "\e903";
-  color: #969b9c;
 }
 
 .icon-findHouse:before {
@@ -348,17 +348,23 @@ input {
 }
 
 /*公用标题样式*/
-.title {
+.title, .title-line {
   font-weight: 600;
   font-size: 18px;
-  margin-bottom: 10px;
+  line-height: 40px;
+  position: relative;
+}
+
+.title span, .title-line span {
+  position: absolute;
+  right: 3%;
+  top: 0px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 400;
 }
 
 .title-line {
-  font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 10px;
-  padding: 10px 0;
   border-bottom: solid 1px #cecece;
 }
 
@@ -414,14 +420,71 @@ input {
 .headTop .tit a, .headTop .tit span {
   position: absolute;
   right: 3%;
-  top: 9px;
+  left: auto;
+  top: 0px;
   font-size: 15px;
   text-decoration: none;
 }
 
-.headTop .tit span {
+.headTop .tit a {
   left: auto;
   color: #21b97a;
+}
+
+.headTop .tabSwitch {
+  position: relative;
+  text-align: center;
+  color: #666;
+  line-height: 30px;
+  font-size: 18px;
+}
+
+.headTop .tabSwitch span {
+  float: none;
+  display: inline-block;
+  position: initial;
+  border-bottom: solid 2px #f5f5f5;
+  padding: 0 5px;
+  margin: 0 3%;
+}
+
+.headTop .tabSwitch .act {
+  color: #21b97a;
+  border-bottom: solid 2px #21b97a;
+}
+
+.tabSwitchBox {
+  padding-bottom: 0px;
+}
+
+.tabSwitchBox .tabSwitch span {
+  padding-bottom: 5px;
+}
+
+.search {
+  position: relative;
+}
+
+.search input {
+  width: calc(100% - 80px);
+  padding: 10px 10px 10px 25px;
+  border-radius: 3px;
+  font-size: 14px;
+  background: #cecece;
+}
+
+.search .icon-seach {
+  position: absolute;
+  left: 15px;
+  top: 20px;
+}
+
+.search .icon-edit {
+  position: relative;
+  color: #21b97a;
+  margin-left: 10px;
+  font-size: 24px;
+  top: 7px;
 }
 
 .htLine {
@@ -439,6 +502,7 @@ input {
   font-size: 18px;
   background: #21b97a;
   color: #fff;
+  border-top: solid 1px #e8e8e9;
 }
 
 .greenBottom span:first-child {
@@ -448,6 +512,42 @@ input {
 
 .greenBottom span {
   width: 50%;
+  float: left;
+  line-height: 50px;
+}
+
+.footerBox {
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  background: #21b97a;
+  color: #fff;
+  border-top: solid 1px #e8e8e9;
+}
+
+.footerBox span:first-child, .footerBox span:nth-child(2) {
+  background: #fff;
+  color: #999;
+}
+
+.footerBox span:first-child {
+  border-right: solid 1px #e8e8e9;
+}
+
+.footerBox span:first-child i:before {
+  color: #999;
+  position: relative;
+  top: 1px;
+  right: 3px;
+}
+
+.footerBox span {
+  width: 33%;
   float: left;
   line-height: 50px;
 }
@@ -470,6 +570,7 @@ input {
 }
 
 .itemBox li {
+  position: relative;
   height: 50px;
   line-height: 50px;
   display: flex;
@@ -604,6 +705,7 @@ input[type='file'] + span {
 input[type='file'] {
   position: absolute;
   margin-top: 10px;
+  left: 0;
   z-index: 1;
   width: 100% !important;
   height: 100%;
@@ -652,7 +754,7 @@ input[type='file'] {
 .popBox .tit span {
   position: absolute;
   text-align: right;
-  top: 10px;
+  top: 0px;
   right: 10px;
 }
 
@@ -883,6 +985,53 @@ input[type='file'] {
   background-image: url("../img/asset-start.png");
 }
 
+.loadingMore {
+  width: 45px;
+  margin: 10px auto;
+}
+
+.selPop {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  max-width: 750px;
+  margin: 0 auto;
+  top: 0px;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.selPop .selItem {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.selPop .selItem div:first-child {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.selPop .selItem div:first-child li {
+  background: #fff;
+  line-height: 50px;
+  border-bottom: solid 1px #e8e8e9;
+}
+
+.selPop .selItem div:first-child .selTit, .selPop .selItem div:first-child .act {
+  color: #21b97a;
+}
+
+.selPop .selCan {
+  background: #fff;
+  text-align: center;
+  line-height: 50px;
+  border: solid 1px #e8e8e9;
+}
+
 /*
  * colors variables
  */
@@ -967,6 +1116,7 @@ header .banner-roll .banner-item .ite {
   padding: 0 10px 0 30px;
   font-size: 14px;
   border: none;
+  background: #fff;
 }
 
 .searchBox .search .searchInput {
@@ -983,17 +1133,41 @@ header .banner-roll .banner-item .ite {
   top: 2px;
 }
 
-.searchBox .searchMap {
+.searchBox .searchMap, .searchBox .searchMess {
   width: 15%;
   text-align: right;
   float: right;
   font-size: 36px;
 }
 
-.searchBox .searchMap i:before {
+.searchBox .searchMap i:before, .searchBox .searchMess i:before {
   color: #fff;
   line-height: 40px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.searchBox .searchMess {
+  font-size: 30px;
+}
+
+.searchBox .searchMess i {
+  position: relative;
+}
+
+.searchBox .searchMess i:before {
+  color: #fff;
+  line-height: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.searchBox .searchMess em {
+  width: 6px;
+  height: 6px;
+  background: #fa5741;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  right: -8px;
 }
 
 /*
@@ -1249,6 +1423,59 @@ nav div {
 }
 
 .item:last-child {
+  border: none;
+}
+
+/*
+ * colors variables
+ */
+.itemC {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: solid 1px #ccc;
+}
+
+.itemC img {
+  width: 90%;
+}
+
+.itemC div {
+  flex: 5;
+  max-width: 170px;
+}
+
+.itemC .message {
+  flex: 7;
+  max-width: 100%;
+}
+
+.itemC .message .name {
+  font-size: 16px;
+  height: 60px;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.itemC .message .lab span {
+  font-size: 12px;
+  padding: 3px 10px;
+  margin-right: 10px;
+  border: solid 1px #ccc;
+  color: #666;
+}
+
+.itemC .message .source {
+  position: relative;
+  font-size: 12px;
+  color: #999;
+}
+
+.itemC .message .source span {
+  position: absolute;
+  right: 10px;
+}
+
+.itemC:last-child {
   border: none;
 }
 

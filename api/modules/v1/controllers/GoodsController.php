@@ -6,13 +6,13 @@ use Yii;
 use yii\rest\Controller;
 use yii\filters\ContentNegotiator;
 use yii\web\Response;
-use api\models\Goods;
+use api\models\Access;
 use yii\web\Request;
 
 class GoodsController extends Controller
 {
 
-    public $modelClass = 'api\models\Goods';
+    public $modelClass = 'api\models\Access';
    
     public function behaviors()  
     {  
@@ -20,7 +20,6 @@ class GoodsController extends Controller
         $behaviors['corsFilter'] = [
 		'class' => \yii\filters\Cors::className(),		
 		'cors' => [
-                // restrict access to
                 'Origin' => ['http://120.79.212.63:8093'],
                 'Access-Control-Request-Method' => ['POST', 'PUT'],
                 // Allow only POST and PUT methods
@@ -45,9 +44,9 @@ class GoodsController extends Controller
      
     public function actionDemo()
     {
-        $goodsModel = new Goods();
+        $goodsModel = new Access();
 
-        $result = $goodsModel->getAllGoods();
+        $result = $goodsModel->getAllAccess();
 
         return [
 	        'code'=>true,
