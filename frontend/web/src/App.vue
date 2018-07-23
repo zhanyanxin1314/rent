@@ -1,15 +1,26 @@
-<template> 
-  <div id="app"> 
-  <router-view 
-      class="view" 
-      keep-alive 
-      transition 
-      transition-mode="out-in"> 
-    </router-view> 
-  </div> 
-</template> 
+<template>
+  <div id="app">
+    <div class="content-div">
+      <!--<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">-->
+        <router-view/>
+      <!--</transition>-->
+    </div>
+    <footer-bar class="footer"></footer-bar>
+  </div>
+</template>
  
-<script> 
-export default { 
-} 
-</script> 
+<script>
+  import Footer from './components/FooterBar.vue'
+  export default {
+    name: 'app',
+    components: {
+      'footer-bar': Footer
+    },
+    computed: {}
+  }
+</script>
+<style scoped="">
+  .content-div {
+    margin-bottom: 55px;
+  }
+</style>

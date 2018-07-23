@@ -1,52 +1,18 @@
-import Vue from 'vue' 
-import App from './App.vue' 
-import VueRouter from 'vue-router' 
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import MintUI from 'mint-ui'
+
+import 'mint-ui/lib/style.css' 
  
-import http from './services/http.js'  
-import  '../static/css/page-RH-index.css'  
-import  '../static/css/page-RH-login.css'  
+Vue.use(MintUI);
+
  
-import Login from './components/Login.vue' 
-import Home from './components/Home.vue'  
-Vue.prototype.$http = http  
-Vue.use(VueRouter) 
-//Vue.use(iView)  
-const router = new VueRouter({ 
-  mode: 'history', 
-  base: __dirname, 
-  routes: [ 
-    { 
-      path: '/', 
-      component: Home, 
-      meta: { 
-      //  requireAuth: true 
-      } 
-    }, 
-    { 
-      path: '/login', 
-      component: Login 
-    } 
-  ] 
-})  
-import Auth from './services/auth.js'; 
  
-router.beforeEach((to, from, next) => { 
-    if(to.meta.requireAuth && !Auth.authenticated()) 
-    { 
-      next({ 
-          path: '/login', 
-          query: { redirect: to.fullPath } 
-        }) 
-    } 
-    else { 
-      next() 
-    } 
-}) 
+new Vue({
+  el: '#app',
+  router,
  
-new Vue({ 
-  el: '#app', 
-  router: router, 
-  render: h => h(App) 
-}); 
- 
-export default router 
+  template: '<App/>',
+  components: {App}
+});
